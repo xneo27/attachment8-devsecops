@@ -1,0 +1,1 @@
+The majority of this deployment were based on/copied from https://github.com/mlabouardy/nexususerconference-infrastructure/tree/master/terraform/pipeline

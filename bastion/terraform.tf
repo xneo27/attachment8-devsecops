@@ -19,3 +19,7 @@ locals {
     protocol = "-1"
   }
 }
+
+output "bastion_sg_id" {
+  value = aws_security_group.bastion_host.id
+}

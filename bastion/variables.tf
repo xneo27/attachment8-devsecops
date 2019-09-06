@@ -36,3 +36,7 @@ variable "bastion_key_name" {}
 variable "ec2_region" {
   default = "us-east-2"
 }
+
+variable "domain_name" {
+  description = "The domain name to utilize for endpoints"
+}
