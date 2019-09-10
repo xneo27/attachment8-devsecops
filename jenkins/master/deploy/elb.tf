@@ -8,10 +8,9 @@ resource "aws_elb" "jenkins_elb" {
   listener {
     instance_port      = 8080
     instance_protocol  = "http"
-    // @TODO FIX THIS! Should be 443/https
-    lb_port            = 80
-    lb_protocol        = "http"
-//    ssl_certificate_id = aws_acm_certificate_validation.jenkins.certificate_arn
+    lb_port            = 443
+    lb_protocol        = "https"
+    ssl_certificate_id = aws_acm_certificate_validation.jenkins.certificate_arn
   }
 
   health_check {

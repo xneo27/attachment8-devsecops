@@ -3,8 +3,9 @@ data "template_file" "user_data_slave" {
   template = file("${path.module}/templates/join-cluster.tpl")
 
   vars = {
-    jenkins_url            = "http://${aws_instance.jenkins_master.private_ip}:8080"
+//    jenkins_url            = "http://${aws_instance.jenkins_master.private_ip}:8080"
     jenkins_username       = var.jenkins_username
+    jenkins_url            = "http://${var.master_ip}:8080"
     jenkins_password       = var.jenkins_password
     jenkins_credentials_id = var.jenkins_credentials_id
   }
@@ -38,7 +39,7 @@ resource "aws_autoscaling_group" "jenkins_slaves" {
   min_size             = var.min_jenkins_slaves
   max_size             = var.max_jenkins_slaves
 
-  depends_on = ["aws_instance.jenkins_master", "aws_elb.jenkins_elb"]
+  depends_on = ["var.master_ip", "var.jenkins_elb_id"]
 
   lifecycle {
     create_before_destroy = true
