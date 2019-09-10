@@ -21,7 +21,7 @@ DumbSlave dumb = new DumbSlave("'$INSTANCE_NAME'",
 "3",
 Mode.NORMAL,
 "slaves",
-new SSHLauncher("'$INSTANCE_IP'", 22, SSHLauncher.lookupSystemCredentials("'$JENKINS_CREDENTIALS_ID'"), "", null, null, "", "", 60, 3, 15),
+new SSHLauncher("'$INSTANCE_IP'", 22, "'$JENKINS_CREDENTIALS_ID'"),
 RetentionStrategy.INSTANCE)
 Jenkins.instance.addNode(dumb)
 ' $JENKINS_URL/script

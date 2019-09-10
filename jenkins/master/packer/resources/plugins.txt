@@ -32,6 +32,7 @@ branch-api
 build-pipeline-plugin
 cloudbees-bitbucket-branch-source
 cloudbees-folder
+configuration-as-code
 command-launcher
 conditional-buildstep
 config-file-provider

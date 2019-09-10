@@ -34,7 +34,10 @@ mv /tmp/disable-cli.groovy /var/lib/jenkins/init.groovy.d/disable-cli.groovy
 mv /tmp/csrf-protection.groovy /var/lib/jenkins/init.groovy.d/csrf-protection.groovy
 mv /tmp/disable-jnlp.groovy /var/lib/jenkins/init.groovy.d/disable-jnlp.groovy
 mv /tmp/jenkins.install.UpgradeWizard.state /var/lib/jenkins/jenkins.install.UpgradeWizard.state
+mv /tmp/slave_id_rsa /var/lib/jenkins/init.groovy.d/slave_id_rsa
+mv /tmp/generate_token.groovy /var/lib/jenkins/init.groovy.d/generate_token.groovy
 mv /tmp/node-agent.groovy /var/lib/jenkins/init.groovy.d/node-agent.groovy
+mv /tmp/job.yml /var/lib/jenkins/jenkins.yaml
 chown -R jenkins:jenkins /var/lib/jenkins/jenkins.install.UpgradeWizard.state
 mv /tmp/jenkins /etc/sysconfig/jenkins
 chmod +x /tmp/install-plugins.sh

@@ -40,6 +40,11 @@
     "destination" : "/tmp/node-agent.groovy"
   },
   {
+    "type": "file",
+    "source": "${resource_path}/slave_id_rsa",
+    "destination" : "/tmp/slave_id_rsa"
+  },
+  {
     "type" : "file",
     "source" : "${resource_path}/plugins.txt",
     "destination" : "/tmp/plugins.txt"
@@ -54,6 +59,16 @@
     "source" : "${resource_path}/telegraf.conf",
     "destination" : "/tmp/telegraf.conf"
   },
+  {
+    "type" : "file",
+    "source" : "${resource_path}/jobs.yml",
+    "destination" : "/tmp/job.yml"
+  },
+  {
+      "type" : "file",
+      "source" : "${resource_path}/generate_token.groovy",
+      "destination" : "/tmp/generate_token.groovy"
+    },
   {
     "type" : "shell",
     "script" : "${resource_path}/setup.sh",
