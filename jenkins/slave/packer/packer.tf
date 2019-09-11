@@ -29,6 +29,9 @@ data "template_file" "slave_ami" {
 resource "local_file" "slave_ami" {
   filename = "${path.module}/resources/slave_ami.json"
   content = data.template_file.slave_ami.rendered
+
+  # Delay execution until master is up. This will enable better compatibility when registering slaves.
+  depends_on = [var.master_ip]
 }
 
 resource "null_resource" "slave_ami" {

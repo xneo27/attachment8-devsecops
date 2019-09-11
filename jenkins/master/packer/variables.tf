@@ -37,3 +37,7 @@ variable "github_owner" {
 variable "github_repo" {
   default = "attachment8-ingesters"
 }
+
+variable "github_user" {}
+
+variable "github_password" {}

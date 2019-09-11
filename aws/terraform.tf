@@ -26,3 +26,7 @@ output "vpc_id" {
 output "vpc_name" {
   value = aws_vpc.default.tags.Name
 }
+
+output "availability_zones" {
+  value = aws_subnet.private_subnets.*.availability_zone
+}

@@ -59,3 +59,9 @@ variable "jenkins_username" {
 
 variable "jenkins_password" {
 }
+
+variable "jenkins_pem" {}
+
+variable "github_user" {}
+
+variable "github_password" {}

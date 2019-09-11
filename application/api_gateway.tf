@@ -30,30 +30,9 @@ resource "aws_api_gateway_rest_api" "Attachment8" {
 }
 
 
-data "aws_iam_role" "lambda_role" {
-  name = "lambda-es"
-}
 
-# @TODO Correct the details below, then use it instead.
-//resource "aws_iam_role" "iam_for_lambda" {
-//  name = "iam_for_lambda"
-//
-//  assume_role_policy = <<EOF
-//{
-//  "Version": "2012-10-17",
-//  "Statement": [
-//    {
-//      "Action": "sts:AssumeRole",
-//      "Principal": {
-//        "Service": "lambda.amazonaws.com"
-//      },
-//      "Effect": "Allow",
-//      "Sid": ""
-//    }
-//  ]
-//}
-//EOF
-//}
+
+
 
 
 
@@ -84,6 +63,8 @@ resource "aws_s3_bucket_object" "get_actor" {
   source = data.archive_file.get_actor_archive.output_path
 
   etag = data.archive_file.get_actor_archive.output_md5
+
+  depends_on = [aws_s3_bucket.attachment8]
 }
 
 resource "aws_lambda_function" "get_actor" {
@@ -91,7 +72,7 @@ resource "aws_lambda_function" "get_actor" {
   s3_key = aws_s3_bucket_object.get_actor.key
 
   function_name = "attachment8-actor"
-  role          = data.aws_iam_role.lambda_role.arn
+  role          = aws_iam_role.lambda-es.arn
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.6"
 
@@ -106,6 +87,13 @@ resource "aws_lambda_permission" "apigw_lambda_get_actor" {
 
   source_arn = "${aws_api_gateway_rest_api.Attachment8.execution_arn}/*/GET/actor"
 }
+
+
+
+
+
+
+
 
 
 
@@ -136,6 +124,8 @@ resource "aws_s3_bucket_object" "post_synopsis" {
   source = data.archive_file.post_synopsis_archive.output_path
 
   etag = data.archive_file.post_synopsis_archive.output_md5
+
+  depends_on = [aws_s3_bucket.attachment8]
 }
 
 resource "aws_lambda_function" "post_synopsis" {
@@ -143,7 +133,7 @@ resource "aws_lambda_function" "post_synopsis" {
   s3_key = aws_s3_bucket_object.post_synopsis.key
 
   function_name = "attachment8-synopsis"
-  role          = data.aws_iam_role.lambda_role.arn
+  role          = aws_iam_role.lambda-es.arn
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.6"
 

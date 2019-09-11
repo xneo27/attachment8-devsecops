@@ -41,3 +41,9 @@ variable "vpc_cidr_block" {}
 variable "master_ami_name" {
   description = "The name to use to create the master AMI"
 }
+
+variable "jenkins_pem" {}
+
+variable "github_user" {}
+
+variable "github_password" {}

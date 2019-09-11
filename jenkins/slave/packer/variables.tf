@@ -16,6 +16,4 @@ variable "slave_ami_name" {
 
 variable "vpc_id" {}
 
-variable "master_ami_name" {
-  description = "The name to use to create the master AMI"
-}
+variable master_ip {}

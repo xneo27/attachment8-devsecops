@@ -16,6 +16,9 @@ module "packer" {
   jenkins_username = var.jenkins_username
   master_ami_name = var.master_ami_name
   vpc_id = var.vpc_id
+  jenkins_pem = var.jenkins_pem
+  github_password = var.github_password
+  github_user = var.github_user
 }
 
 module "deploy" {
@@ -43,8 +46,4 @@ output "jenkins_master_ip" {
 
 output "jenkins_elb_id" {
   value = module.deploy.aws_elb
-}
-
-output "user_token" {
-  value = ""
 }

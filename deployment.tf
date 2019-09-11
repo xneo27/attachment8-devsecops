@@ -43,6 +43,20 @@ module "jenkins" {
   vpc_cidr_block = local.cidr_block
   jenkins_password = var.jenkins_password
   jenkins_username = var.jenkins_username
+  github_password = var.github_password
+  github_user = var.github_user
+  jenkins_pem = var.jenkins_pem
+}
+
+module "application" {
+  source = "./application"
+  api_git_url = var.api_git_url
+  api_git_version = var.api_git_version
+  availability_zones = module.aws.availability_zones
+  bastion_sg_id = module.bastion.bastion_sg_id
+  bucket_name = var.s3_bucket_name
+  private_subnet_ids = module.aws.private_subnet_ids
+  vpc_id = module.aws.vpc_id
 }
 
 # @TODO https://github.com/terraform-providers/terraform-provider-aws/issues/4560

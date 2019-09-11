@@ -12,9 +12,9 @@ module "packer" {
   source = "./packer"
   aws_region = var.aws_region
   ami_subnet_id = var.ami_subnet_id
-  master_ami_name = var.master_ami_name
   slave_ami_name = var.slave_ami_name
   vpc_id = var.vpc_id
+  master_ip = var.master_ip
 }
 
 module "deploy" {

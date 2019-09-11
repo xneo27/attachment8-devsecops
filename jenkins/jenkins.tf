@@ -16,6 +16,9 @@ module "master" {
   vpc_cidr_block = var.vpc_cidr_block
   vpc_id = var.vpc_id
   master_ami_name = var.master_ami_name
+  jenkins_pem = var.jenkins_pem
+  github_password = var.github_password
+  github_user = var.github_user
 }
 
 
@@ -30,7 +33,6 @@ module "slave" {
   jenkins_password = var.jenkins_password
   jenkins_slave_instance_type = var.jenkins_slave_instance_type
   jenkins_username = var.jenkins_username
-  master_ami_name = var.master_ami_name
   master_ip = module.master.jenkins_master_ip
   private_subnet_ids = var.private_subnet_ids
   slave_ami_id = module.slave.slave_ami_id

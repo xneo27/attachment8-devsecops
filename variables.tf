@@ -25,3 +25,9 @@ variable "jenkins_key_name" {
 
 variable "jenkins_password" {}
 variable "jenkins_username" {}
+variable "github_user" {}
+variable "github_password" {}
+variable "jenkins_pem" {}
+variable "s3_bucket_name" {}
+variable "api_git_url" {}
+variable "api_git_version" {}

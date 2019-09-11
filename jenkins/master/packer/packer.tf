@@ -21,6 +21,15 @@ data "template_file" "master_basic_security" {
   }
 }
 
+# Configure script for default UN/PW for Jenkins Master
+data "template_file" "master_node_agent" {
+  template = file("${path.module}/templates/node_agent.tpl")
+  vars = {
+    username = var.github_user
+    password = var.github_password
+  }
+}
+
 # Configure master configuration file
 data "template_file" "master_provisioners" {
   template = file("${path.module}/templates/master_provisioners.tpl")
@@ -71,6 +80,12 @@ resource "local_file" "master_basic_security" {
 }
 
 
+# Set up default UN/PW for Jenkins Master
+resource "local_file" "master_node_agent" {
+  filename = "${path.module}/resources/node_agent.groovy"
+  content = data.template_file.master_node_agent.rendered
+}
+
 # Build master AMI configuration file
 resource "local_file" "master_ami" {
   filename = "${path.module}/resources/master_ami.json"
@@ -83,7 +98,7 @@ resource "null_resource" "master_ami" {
     command = "packer build ${path.module}/resources/master_ami.json | tee ${path.module}/packer_output.txt"
   }
 
-  depends_on = ["local_file.master_ami", "local_file.master_basic_security"]
+  depends_on = ["local_file.master_ami", "local_file.master_basic_security", "local_file.master_node_agent"]
 }
 
 data "aws_ami" "jenkins-master" {
