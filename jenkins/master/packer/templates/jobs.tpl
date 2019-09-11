@@ -1,13 +1,3 @@
-credentials:
-  system:
-    domainCredentials:
-      - credentials:
-          - string:
-              scope: GLOBAL
-              id: "github"
-              secret: "${secret}" #Load from Environment Variable
-              description: "${description}"
-
 jobs:
   - script: >
       multibranchPipelineJob('image-jenkins') {

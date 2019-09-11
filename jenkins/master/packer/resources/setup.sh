@@ -27,8 +27,16 @@ chmod 700 /var/lib/jenkins/.ssh
 mv /tmp/id_rsa /var/lib/jenkins/.ssh/id_rsa
 chmod 600 /var/lib/jenkins/.ssh/id_rsa
 
+echo "Install Docker engine"
+yum update -y
+yum install docker -y
+usermod -aG docker jenkins
+usermod -aG docker ec2-user
+service docker start
+
 echo "Configure Jenkins"
 mkdir -p /var/lib/jenkins/init.groovy.d
+mv /tmp/update_plugins.groovy /var/lib/jenkins/init.groovy.d/update_plugins.groovy
 mv /tmp/basic-security.groovy /var/lib/jenkins/init.groovy.d/basic-security.groovy
 mv /tmp/disable-cli.groovy /var/lib/jenkins/init.groovy.d/disable-cli.groovy
 mv /tmp/csrf-protection.groovy /var/lib/jenkins/init.groovy.d/csrf-protection.groovy

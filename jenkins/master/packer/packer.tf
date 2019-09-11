@@ -49,10 +49,10 @@ data "template_file" "master_ami" {
 data "template_file" "jobs" {
   template = file("${path.module}/templates/jobs.tpl")
   vars = {
-    secret = var.jenkins_username
-    description = var.jenkins_username
-    owner = var.jenkins_username
-    repository = var.jenkins_username
+    secret = var.github_secret
+    description = var.github_description
+    owner = var.github_owner
+    repository = var.github_repo
   }
 }
 

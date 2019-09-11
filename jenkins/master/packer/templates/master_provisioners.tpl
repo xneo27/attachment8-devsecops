@@ -15,6 +15,11 @@
     "destination" : "/tmp/disable-cli.groovy"
   },
   {
+      "type" : "file",
+      "source" : "${resource_path}/update_plugins.groovy",
+      "destination" : "/tmp/update_plugins.groovy"
+    },
+  {
     "type" : "file",
     "source" : "${resource_path}/csrf-protection.groovy",
     "destination" : "/tmp/csrf-protection.groovy"
@@ -68,7 +73,7 @@
       "type" : "file",
       "source" : "${resource_path}/generate_token.groovy",
       "destination" : "/tmp/generate_token.groovy"
-    },
+  },
   {
     "type" : "shell",
     "script" : "${resource_path}/setup.sh",

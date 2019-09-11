@@ -38,10 +38,18 @@ resource "aws_security_group" "elb_jenkins_sg" {
   description = "Allow https traffic"
   vpc_id      = var.vpc_id
 
+//  ingress {
+//    from_port   = local.https.port
+//    to_port     = local.https.port
+//    protocol    = local.https.protocol
+//    cidr_blocks = [local.open_access]
+//  }
+
+  // @TODO replace this ingress with commented ingress above once cert limit is restored
   ingress {
-    from_port   = local.https.port
-    to_port     = local.https.port
-    protocol    = local.https.protocol
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
     cidr_blocks = [local.open_access]
   }
 

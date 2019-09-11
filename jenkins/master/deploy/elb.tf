@@ -5,12 +5,20 @@ resource "aws_elb" "jenkins_elb" {
   security_groups           = [aws_security_group.elb_jenkins_sg.id]
   instances                 = [aws_instance.jenkins_master.id]
 
+//  listener {
+//    instance_port      = 8080
+//    instance_protocol  = "http"
+//    lb_port            = 443
+//    lb_protocol        = "https"
+//    ssl_certificate_id = aws_acm_certificate_validation.jenkins.certificate_arn
+//  }
+
+  // @TODO replace this listener with commented listener once AWS cert limit is restored
   listener {
     instance_port      = 8080
     instance_protocol  = "http"
-    lb_port            = 443
-    lb_protocol        = "https"
-    ssl_certificate_id = aws_acm_certificate_validation.jenkins.certificate_arn
+    lb_port            = 80
+    lb_protocol        = "http"
   }
 
   health_check {
