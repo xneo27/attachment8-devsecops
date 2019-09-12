@@ -16,15 +16,15 @@ data "template_file" "swagger_file" {
 
   vars = {
     api_version = timestamp()
-    get_actor_uri = aws_lambda_function.get_actor.invoke_arn
-    post_synopsis_uri = aws_lambda_function.post_synopsis.invoke_arn
+    get_actor_url = aws_lambda_function.get_actor.invoke_arn
+    post_synopsis_url = aws_lambda_function.post_synopsis.invoke_arn
   }
 
   depends_on = [null_resource.api_gateway_resources]
 }
 
 resource "aws_api_gateway_rest_api" "Attachment8" {
-  name = "Attachment8"
+  name = "attachment8"
 
   body = data.template_file.swagger_file.rendered
 }
@@ -38,7 +38,7 @@ resource "aws_api_gateway_rest_api" "Attachment8" {
 
 ### GET ACTOR RESOURCES ####
 resource "null_resource" "prepare_get_actor" {
-  triggers {
+  triggers = {
     ts = timestamp()
   }
 
@@ -50,7 +50,7 @@ resource "null_resource" "prepare_get_actor" {
 }
 
 data "archive_file" "get_actor_archive" {
-  source_file = "${path.module}/tmp/attachment8-api/lambda/actor/env/lib/python3.7/site-packages/"
+  source_dir = "${path.module}/tmp/attachment8-api/lambda/actor/env/lib/python3.7/site-packages/"
   output_path = "${path.module}/tmp/get_actor.zip"
   type = "zip"
 
@@ -69,7 +69,7 @@ resource "aws_s3_bucket_object" "get_actor" {
 
 resource "aws_lambda_function" "get_actor" {
   s3_bucket = var.bucket_name
-  s3_key = aws_s3_bucket_object.get_actor.key
+  s3_key = "get_actor.zip"
 
   function_name = "attachment8-actor"
   role          = aws_iam_role.lambda-es.arn
@@ -99,7 +99,7 @@ resource "aws_lambda_permission" "apigw_lambda_get_actor" {
 
 ### POST SYNOPSIS RESOURCES ###
 resource "null_resource" "prepare_post_synopsis" {
-  triggers {
+  triggers = {
     ts = timestamp()
   }
 
@@ -111,7 +111,7 @@ resource "null_resource" "prepare_post_synopsis" {
 }
 
 data "archive_file" "post_synopsis_archive" {
-  source_file = "${path.module}/tmp/attachment8-api/lambda/synopsis/env/lib/python3.7/site-packages/"
+  source_dir = "${path.module}/tmp/attachment8-api/lambda/synopsis/env/lib/python3.7/site-packages/"
   output_path = "${path.module}/tmp/post_synopsis.zip"
   type = "zip"
 
@@ -130,7 +130,7 @@ resource "aws_s3_bucket_object" "post_synopsis" {
 
 resource "aws_lambda_function" "post_synopsis" {
   s3_bucket = var.bucket_name
-  s3_key = aws_s3_bucket_object.post_synopsis.key
+  s3_key = "post_synopsis.zip"
 
   function_name = "attachment8-synopsis"
   role          = aws_iam_role.lambda-es.arn

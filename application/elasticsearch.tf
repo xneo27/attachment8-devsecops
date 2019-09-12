@@ -1,5 +1,5 @@
 resource "aws_elasticsearch_domain" "example" {
-  domain_name           = "Attachment8"
+  domain_name           = "attachment8"
   elasticsearch_version = "7.1"
 
   cluster_config {
@@ -15,13 +15,13 @@ resource "aws_elasticsearch_domain" "example" {
     "rest.action.multi.allow_explicit_index" = "true"
   }
 
-  ebs_options = {
+  ebs_options {
     ebs_enabled = true
     volume_size= 100
     volume_type = "gp2"
   }
 
-  encrypt_at_rest = {
+  encrypt_at_rest {
     enabled = true
   }
 
@@ -29,11 +29,9 @@ resource "aws_elasticsearch_domain" "example" {
     enabled = true
   }
 
-  vpc_options = {
-    "availability_zones" = var.availability_zones
-    "security_group_ids" = [aws_security_group.elastic_search.id]
-    "subnet_ids" = var.private_subnet_ids
-    "vpc_id" = var.vpc_id
+  vpc_options {
+    security_group_ids = [aws_security_group.elastic_search.id]
+    subnet_ids = [var.private_subnet_ids[0]]
   }
 
   tags = {
@@ -54,8 +52,7 @@ resource "aws_elasticsearch_domain_policy" "main" {
         "AWS": "*"
       },
       "Action": "es:*",
-      "Resource": "arn:aws:es:us-east-2:737986169489:domain/attachment8/*"
- "Resource": "${aws_elasticsearch_domain.example.arn}/*"
+      "Resource": "${aws_elasticsearch_domain.example.arn}/*"
     }
   ]
 }

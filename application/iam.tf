@@ -1,7 +1,7 @@
 data "aws_caller_identity" "current" {}
 
 resource "aws_iam_role" "lambda-es" {
-  name = "lambda-es"
+  name = "lambda-es-alt"
 
   assume_role_policy = <<EOF
 {
@@ -21,7 +21,6 @@ EOF
 }
 
 resource "aws_iam_policy" "AWSLambdaBasicExecutionRole" {
-  role = aws_iam_role.lambda-es.id
   name = "AWSLambdaBasicExecutionRole"
   # @TODO verify attachment8-search is correct below.
   policy = <<EOF
@@ -49,7 +48,6 @@ EOF
 }
 
 resource "aws_iam_policy" "AWSLambdaElasticSearchExecutionRole" {
-  role = aws_iam_role.lambda-es.id
   name = "AWSLambdaElasticSearchExecutionRole"
   policy = <<EOF
 {
@@ -82,7 +80,7 @@ resource "aws_iam_role_policy_attachment" "AWSLambdaElasticSearchExecutionRole" 
 }
 
 resource "aws_iam_role_policy_attachment" "AWSLambdaBasicExecutionRole" {
-  policy_arn = aws_iam_policy.AWSLambdaBasicExecutionRole
+  policy_arn = aws_iam_policy.AWSLambdaBasicExecutionRole.arn
   role = aws_iam_role.lambda-es.name
 }
 

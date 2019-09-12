@@ -57,6 +57,7 @@ module "application" {
   bucket_name = var.s3_bucket_name
   private_subnet_ids = module.aws.private_subnet_ids
   vpc_id = module.aws.vpc_id
+  ec2_region = var.ec2-region
 }
 
 # @TODO https://github.com/terraform-providers/terraform-provider-aws/issues/4560

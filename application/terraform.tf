@@ -3,7 +3,7 @@ terraform {
 }
 
 provider "aws" {
-  region = var.ec2_region
+  region = "us-east-1"
 }
 
 locals {

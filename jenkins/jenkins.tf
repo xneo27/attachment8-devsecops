@@ -4,6 +4,7 @@ terraform {
 
 module "master" {
   source = "./master"
+  aws_region = var.ec2-region
   ami_subnet_id = var.public_subnet_ids[0]
   bastion_sg_id = var.bastion_sg_id
   domain_name = var.domain_name
@@ -25,6 +26,7 @@ module "master" {
 
 module "slave" {
   source = "./slave"
+  aws_region = var.ec2-region
   ami_subnet_id = var.public_subnet_ids[0]
   bastion_sg_id = var.bastion_sg_id
   domain_name = var.domain_name

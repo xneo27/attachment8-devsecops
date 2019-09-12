@@ -46,7 +46,7 @@
   },
   {
     "type": "file",
-    "source": "${resource_path}/slave_id_rsa",
+    "source": "${cert_path}",
     "destination" : "/tmp/slave_id_rsa"
   },
   {
