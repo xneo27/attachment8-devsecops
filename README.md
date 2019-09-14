@@ -10,11 +10,10 @@ sh start.sh
 
 This will pull down associated git branches, initialize terraform, then apply terraform.
 
-Terraform and Packer (both from HashiCorp) should be installed in order to deploy
-
-AWS CLI should be installed and configured prior to use.
-
-A Registered domain is expected for the project and should be configured in terraform.tfvars
+**!!Attention--- Requirement Before Installation**
+1. Terraform and Packer (both from HashiCorp) should be installed in order to deploy
+2. AWS CLI should be installed and configured prior to use.
+3. A Registered domain is expected for the project and should be configured in terraform.tfvars
 
 ## Repository Hierarchy List
 1.	**attachment8-ingestors** – contains the code used for the data ingestion aspects of the project.
