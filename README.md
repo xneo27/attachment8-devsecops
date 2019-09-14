@@ -41,3 +41,11 @@ We decided to develop a web-based application that was built using the Model-Vie
 * Google TPUs
 
 ## Other (Stability, Maintainability, and Scalability)
+
+## Notes
+In the file called Attachment8, there were a few files required for the submission. We wanted to make you knew where these files were located. Below is the list of files and location.
+
+1.	**attachment8-devsecops/Readme.MD** – Within this markdown file is the script that performs both environment launch and teardown with appropriate commands. The command to get started is located in the instructions within the readme.md file. This file also contains the architecture and technical approach to the project.
+2.	**attachment8-ml/Models.MD** – The markdown file that contains the descriptions of all the machine learning (ML) and artificial intelligence (AI) models in the architecture of our system.
+3.	**attachment8-devsecops/Approach.MD** - The markdown file that contains the description of the agile architecture and technical approach with the processes and team roles.
+4.	**attachment8-devsecops/documentation** – This folder contains the following files: Solution.PDF, Commits.PDF, UserStories.PDF.
