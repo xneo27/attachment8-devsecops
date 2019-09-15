@@ -22,7 +22,6 @@ EOF
 
 resource "aws_iam_policy" "AWSLambdaBasicExecutionRole" {
   name = "AWSLambdaBasicExecutionRole"
-  # @TODO verify attachment8-search is correct below.
   policy = <<EOF
 {
     "Version": "2012-10-17",
@@ -89,3 +88,7 @@ resource "aws_iam_role_policy_attachment" "AWSLambdaVPCAccessExecutionRole" {
   role = aws_iam_role.lambda-es.name
 }
 
+resource "aws_iam_role_policy_attachment" "AWSS3AccessRole" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+  role = aws_iam_role.lambda-es.name
+}

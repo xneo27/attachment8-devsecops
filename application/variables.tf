@@ -16,14 +16,20 @@ variable "api_git_url" {
   description = "The git uri for the api gateway"
 }
 
+variable "ingester_get_url" {
+  description = "The git url for the actor ingester"
+}
+
 variable "bucket_name" {}
 
-variable "availability_zones" {
-
-}
+variable "availability_zones" {}
 
 variable "bastion_sg_id" {}
 
 variable "private_subnet_ids" {
   description = "The IDs of the AWS private subnets"
+}
+
+variable "public_subnet_ids" {
+  description = "The IDs of the AWS public subnets"
 }

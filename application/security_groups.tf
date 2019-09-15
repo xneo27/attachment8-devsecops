@@ -7,8 +7,14 @@ resource "aws_security_group" "elastic_search" {
     from_port   = local.https.port
     to_port     = local.https.port
     protocol    = local.https.protocol
-    # @TODO REview- The build SG also includes itself in the 443 allow list. Is this neccessary (or possible from here?)
     security_groups = [var.bastion_sg_id]
+  }
+
+  ingress {
+    from_port = local.https.port
+    protocol = local.https.protocol
+    to_port = local.https.port
+    self = true
   }
 
   egress {

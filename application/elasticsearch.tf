@@ -3,7 +3,7 @@ resource "aws_elasticsearch_domain" "example" {
   elasticsearch_version = "7.1"
 
   cluster_config {
-    instance_type = "r5.xlarge.elasticsearch"
+    instance_type = "r5.large.elasticsearch"
   }
 
   snapshot_options {
@@ -30,8 +30,10 @@ resource "aws_elasticsearch_domain" "example" {
   }
 
   vpc_options {
-    security_group_ids = [aws_security_group.elastic_search.id]
     subnet_ids = [var.private_subnet_ids[0]]
+    //availability_zones = var.availability_zones
+    security_group_ids = [aws_security_group.elastic_search.id]
+    //vpc_id = var.vpc_id
   }
 
   tags = {
