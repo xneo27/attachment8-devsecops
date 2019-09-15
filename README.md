@@ -25,6 +25,9 @@ This will pull down associated git branches, initialize terraform, then apply te
 ## Solution Description
 We decided to develop a web-based application that was built using the Model-View-ViewModel (MVVM) style architecture. Our application is comprised of both a frontend user interface (UI) and multiple backend APIs. This approach allows us to separate roles into frontend developer and backend developer. Our frontend (UI) is developed using  Vue and our backend is developed using Flask contained within a container hosted on AWS Elastic Container Service (ECS). We are using ElasticSearch as our data store of choice hosted in AWS. Likewise, our machine learning (ML) and artificial intelligence (AI) models are hosted within a container on ECS with an API developed in Flask. 
 
+**High Level Architecture**
+![High Level Architecture](https://attachment8-pub.s3.us-east-2.amazonaws.com/documentation/Attachment8_System-Architecture.png)
+
 ## Core Technolgoies List
 * Vue
 * Flask
